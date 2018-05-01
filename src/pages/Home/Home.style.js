@@ -4,14 +4,15 @@ import { StyleSheet, Text, View } from 'react-native';
 import theme from 'veronalive/src/theme';
 
 export default StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+  map: {
+    flexGrow: 1,
+    alignItems: 'flex-end',
+    ...StyleSheet.absoluteFillObject,
   },
   welcome: {
-    ...theme.fonts.header,
-    textAlign: 'center',
-    margin: theme.grid.x1,
+    ...StyleSheet.absoluteFillObject,
+    justifyContent: 'flex-end',
+    alignItems: 'center',
+    marginVertical: 20,
   },
 });
