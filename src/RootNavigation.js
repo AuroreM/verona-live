@@ -4,15 +4,24 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import { StackNavigator, addNavigationHelpers } from 'react-navigation';
-
+import { View, Text } from 'react-native';
 import * as Pages from 'veronalive/src/pages';
 import { navListener } from 'veronalive/src/modules/Nav/module';
 
-export const AppNavigator = StackNavigator({
-  home: {
-    screen: Pages.Home,
+export const AppNavigator = StackNavigator(
+  {
+    home: {
+      screen: Pages.Home,
+    },
+    list: {
+      screen: Pages.List,
+    },
   },
-});
+  {
+    initialRouteName: 'home',
+    headerMode: 'none',
+  }
+);
 
 class App extends React.Component {
   render() {
