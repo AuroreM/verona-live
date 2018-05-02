@@ -9,8 +9,7 @@ export default StyleSheet.create({
     alignItems: 'flex-end',
     ...StyleSheet.absoluteFillObject,
   },
-  welcome: {
-    ...StyleSheet.absoluteFillObject,
+  button: {
     justifyContent: 'flex-end',
     alignItems: 'center',
     marginVertical: 20,

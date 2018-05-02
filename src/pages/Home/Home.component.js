@@ -41,7 +41,7 @@ export default class Home extends Component {
           }
           showsUserLocation
         />
-        <TouchableOpacity onPress={this.onPress} style={styles.welcome}>
+        <TouchableOpacity onPress={this.onPress} style={styles.button}>
           <Text>Go to the list page 🚀</Text>
         </TouchableOpacity>
       </Page>

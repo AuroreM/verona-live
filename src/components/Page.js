@@ -7,8 +7,7 @@ import theme from 'veronalive/src/theme';
 const styles = StyleSheet.create({
   page: {
     flex: 1,
-    flexDirection: 'column',
-    justifyContent: 'flex-start',
+    justifyContent: 'flex-end',
   },
 });
 
