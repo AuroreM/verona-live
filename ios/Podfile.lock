@@ -29,6 +29,14 @@ PODS:
     - GoogleMaps/Base
   - React (0.55.3):
     - React/Core (= 0.55.3)
+  - react-native-camera (1.1.2):
+    - React
+    - react-native-camera/RCT (= 1.1.2)
+    - react-native-camera/RN (= 1.1.2)
+  - react-native-camera/RCT (1.1.2):
+    - React
+  - react-native-camera/RN (1.1.2):
+    - React
   - react-native-google-maps (0.21.0):
     - Google-Maps-iOS-Utils (= 2.1.0)
     - GoogleMaps (= 2.5.0)
@@ -90,6 +98,7 @@ DEPENDENCIES:
   - glog (from `../node_modules/react-native/third-party-podspecs/glog.podspec`)
   - Google-Maps-iOS-Utils
   - GoogleMaps
+  - react-native-camera (from `../node_modules/react-native-camera`)
   - react-native-google-maps (from `../node_modules/react-native-maps`)
   - react-native-maps (from `../node_modules/react-native-maps`)
   - React/Core (from `../node_modules/react-native`)
@@ -117,6 +126,8 @@ EXTERNAL SOURCES:
     :podspec: "../node_modules/react-native/third-party-podspecs/glog.podspec"
   React:
     :path: "../node_modules/react-native"
+  react-native-camera:
+    :path: "../node_modules/react-native-camera"
   react-native-google-maps:
     :path: "../node_modules/react-native-maps"
   react-native-maps:
@@ -134,11 +145,12 @@ SPEC CHECKSUMS:
   Google-Maps-iOS-Utils: c32891ff472eaaa1fca032beedafa1a013af7875
   GoogleMaps: c087b8e5dfe87ca6ebf59adb9b4894a4146bec4f
   React: 573d89cf10312b17920df6328eaf9ab8059283bf
+  react-native-camera: e900ac7f80013695649bacf54b18e3480b372939
   react-native-google-maps: 68a831730110823d3dadfea0e133f0f4426cd213
   react-native-maps: fb06a43ce6884256097eec1dd69d23957b71df88
   ReactNativePermissions: b64e084dff6a5cad51587d38c306f09246246384
   yoga: 9403c2451c1b47d8cee3e4f1b6fd0ececc63839c
 
-PODFILE CHECKSUM: c495fde1143e9b7b70f44f4a3e0ce2992abfea08
+PODFILE CHECKSUM: 24e3bf0bf5962becac4bd88d47509dbda28c57fc
 
 COCOAPODS: 1.2.1

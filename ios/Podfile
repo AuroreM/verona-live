@@ -39,6 +39,8 @@ target 'veronalive' do
   pod 'Google-Maps-iOS-Utils' # Remove this line if you don't want to support GoogleMaps on iOS
   pod 'ReactNativePermissions', :path => '../node_modules/react-native-permissions'
 
+  pod 'react-native-camera', :path => '../node_modules/react-native-camera'
+
 end
 
 post_install do |installer|
