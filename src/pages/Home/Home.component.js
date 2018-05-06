@@ -27,7 +27,6 @@ export default class Home extends Component {
     this.props.hydrate();
     this.setLocation();
   }
-  onListPress = () => this.props.navigation.navigate('list');
   onCameraPress = () => this.props.navigation.navigate('camera');
 
   renderModal = () => {
@@ -84,9 +83,6 @@ export default class Home extends Component {
         {this.renderModal()}
         <TouchableOpacity onPress={this.onCameraPress} style={styles.button}>
           <Text>Take a picture 📸</Text>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={this.onListPress} style={styles.button}>
-          <Text>Go to the list page 🚀</Text>
         </TouchableOpacity>
       </Page>
     );
