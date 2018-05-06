@@ -1,4 +1,5 @@
 // @flow
+import initData from '../../services/initData';
 
 const initialState = {
   pictures: [],
@@ -11,6 +12,11 @@ const initialState = {
 // REDUCER
 export function appReducer(state = initialState, action) {
   switch (action.type) {
+    case 'HYDRATE':
+      return {
+        ...state,
+        pictures: [...state.pictures, initData],
+      };
     case 'STORE_PICTURE':
       return {
         ...state,
@@ -34,5 +40,6 @@ export function appReducer(state = initialState, action) {
 }
 
 // ACTION CREATORS
+export const hydrate = picture => ({ type: 'HYDRATE' });
 export const storePicture = picture => ({ type: 'STORE_PICTURE', payload: { picture } });
 export const setCurrentLocation = location => ({ type: 'SET_CURRENT_LOCATION', payload: { location } });

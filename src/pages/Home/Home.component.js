@@ -24,11 +24,37 @@ export default class Home extends Component {
     });
   };
   componentDidMount() {
+    this.props.hydrate();
     this.setLocation();
   }
   onListPress = () => this.props.navigation.navigate('list');
   onCameraPress = () => this.props.navigation.navigate('camera');
 
+  renderModal = () => {
+    if (this.props.markers.length > 0) {
+      const marker = this.props.markers.filter(marker => marker.title === this.state.selectedMarkerTitle)[0];
+      if (marker) {
+        return (
+          <Modal visible={!!this.state.selectedMarkerTitle}>
+            <View style={{ margin: 25 }}>
+              <View style={styles.modal}>
+                <Text style={styles.modalTitle}>{marker.title}</Text>
+                <TouchableOpacity onPress={() => this.setState({ selectedMarkerTitle: '' })}>
+                  <Text>Close</Text>
+                </TouchableOpacity>
+              </View>
+              <Image
+                style={styles.modalPicture}
+                source={{
+                  uri: `data:image/png;base64,${marker.picture}`,
+                }}
+              />
+            </View>
+          </Modal>
+        );
+      }
+    }
+  };
   render() {
     return (
       <Page>
@@ -50,27 +76,12 @@ export default class Home extends Component {
               <Marker
                 coordinate={marker.coordinate}
                 title={marker.title}
-                onSelect={() => this.setState({ selectedMarker: marker.title })}
+                onSelect={() => this.setState({ selectedMarkerTitle: marker.title })}
                 key={marker.title}
               />
             ))}
         </MapView>
-        {this.props.markers.length > 0 && (
-          <Modal visible={!!this.state.selectedMarker}>
-            <View style={{ margin: 25 }}>
-              <View style={styles.modal}>
-                <Text style={styles.modalTitle}>{this.props.markers[0].title}</Text>
-                <TouchableOpacity onPress={() => this.setState({ selectedMarker: '' })}>
-                  <Text style>Close</Text>
-                </TouchableOpacity>
-              </View>
-              <Image
-                style={styles.modalPicture}
-                source={{ uri: `data:image/png;base64,${this.props.markers[0].picture}` }}
-              />
-            </View>
-          </Modal>
-        )}
+        {this.renderModal()}
         <TouchableOpacity onPress={this.onCameraPress} style={styles.button}>
           <Text>Take a picture 📸</Text>
         </TouchableOpacity>
