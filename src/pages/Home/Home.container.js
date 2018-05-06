@@ -2,10 +2,15 @@
 
 import { connect } from 'react-redux';
 import Home from './Home.component';
+import { setCurrentLocation } from '../../modules/App';
 
-const mapStateToProps = state => ({});
+const mapStateToProps = state => ({
+  markers: state.app.pictures,
+});
 
-const mapDispatchToProps = dispatch => ({});
+const mapDispatchToProps = dispatch => ({
+  setCurrentLocation: location => dispatch(setCurrentLocation(location)),
+});
 
 const HomeContainer = connect(mapStateToProps, mapDispatchToProps)(Home);
 

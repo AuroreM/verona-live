@@ -1,8 +1,8 @@
 // @flow
 
 import React, { Component } from 'react';
-import { Text, View, TouchableOpacity } from 'react-native';
-import MapView from 'react-native-maps';
+import { Text, View, TouchableOpacity, Modal, Image } from 'react-native';
+import MapView, { Marker } from 'react-native-maps';
 
 import { Page } from 'veronalive/src/components';
 import { getCurrentLocation } from 'veronalive/src/services/geolocation';
@@ -18,7 +18,9 @@ export default class Home extends Component {
 
   setLocation = () => {
     return getCurrentLocation().then(position => {
-      this.setState({ latitude: position.coords.latitude, longitude: position.coords.longitude });
+      const location = { latitude: position.coords.latitude, longitude: position.coords.longitude };
+      this.setState(location);
+      this.props.setCurrentLocation(location);
     });
   };
   componentDidMount() {
@@ -26,6 +28,7 @@ export default class Home extends Component {
   }
   onListPress = () => this.props.navigation.navigate('list');
   onCameraPress = () => this.props.navigation.navigate('camera');
+
   render() {
     return (
       <Page>
@@ -41,7 +44,33 @@ export default class Home extends Component {
             }
           }
           showsUserLocation
-        />
+        >
+          {this.props.markers &&
+            this.props.markers.map(marker => (
+              <Marker
+                coordinate={marker.coordinate}
+                title={marker.title}
+                onSelect={() => this.setState({ selectedMarker: marker.title })}
+                key={marker.title}
+              />
+            ))}
+        </MapView>
+        {this.props.markers.length > 0 && (
+          <Modal visible={!!this.state.selectedMarker}>
+            <View style={{ margin: 25 }}>
+              <View style={styles.modal}>
+                <Text style={styles.modalTitle}>{this.props.markers[0].title}</Text>
+                <TouchableOpacity onPress={() => this.setState({ selectedMarker: '' })}>
+                  <Text style>Close</Text>
+                </TouchableOpacity>
+              </View>
+              <Image
+                style={styles.modalPicture}
+                source={{ uri: `data:image/png;base64,${this.props.markers[0].picture}` }}
+              />
+            </View>
+          </Modal>
+        )}
         <TouchableOpacity onPress={this.onCameraPress} style={styles.button}>
           <Text>Take a picture 📸</Text>
         </TouchableOpacity>
