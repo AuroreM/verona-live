@@ -16,6 +16,9 @@ export const AppNavigator = StackNavigator(
     list: {
       screen: Pages.List,
     },
+    camera: {
+      screen: Pages.Camera,
+    },
   },
   {
     initialRouteName: 'home',
