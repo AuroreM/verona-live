@@ -2,7 +2,7 @@
 
 import React, { Component } from 'react';
 import { Text, View, TouchableOpacity, Modal, Image } from 'react-native';
-import MapView, { Marker } from 'react-native-maps';
+import MapView, { Marker, PROVIDER_GOOGLE } from 'react-native-maps';
 
 import { Page } from 'veronalive/src/components';
 import { getCurrentLocation } from 'veronalive/src/services/geolocation';
@@ -54,11 +54,13 @@ export default class Home extends Component {
       }
     }
   };
+
   render() {
     return (
       <Page>
         <MapView
           style={styles.map}
+          provider={PROVIDER_GOOGLE}
           initialRegion={
             this.state.latitude &&
             this.state.longitude && {
