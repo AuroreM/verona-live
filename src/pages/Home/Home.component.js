@@ -2,7 +2,7 @@
 
 import React, { Component } from 'react';
 import { Text, View, TouchableOpacity, Modal, Image } from 'react-native';
-import MapView, { Marker, PROVIDER_GOOGLE } from 'react-native-maps';
+import MapView, { Marker } from 'react-native-maps';
 
 import { Page } from 'veronalive/src/components';
 import { getCurrentLocation } from 'veronalive/src/services/geolocation';
@@ -29,16 +29,18 @@ export default class Home extends Component {
   }
   onCameraPress = () => this.props.navigation.navigate('camera');
 
+  onCloseModal = () => this.setState({ selectedMarkerTitle: '' });
+
   renderModal = () => {
     if (this.props.markers.length > 0) {
       const marker = this.props.markers.filter(marker => marker.title === this.state.selectedMarkerTitle)[0];
       if (marker) {
         return (
-          <Modal visible={!!this.state.selectedMarkerTitle}>
+          <Modal visible={!!this.state.selectedMarkerTitle} onRequestClose={this.onCloseModal}>
             <View style={{ margin: 25 }}>
               <View style={styles.modal}>
                 <Text style={styles.modalTitle}>{marker.title}</Text>
-                <TouchableOpacity onPress={() => this.setState({ selectedMarkerTitle: '' })}>
+                <TouchableOpacity hitSlop={{ bottom: 20, top: 20, right: 20, left: 20 }} onPress={this.onCloseModal}>
                   <Text>Close</Text>
                 </TouchableOpacity>
               </View>
@@ -60,7 +62,6 @@ export default class Home extends Component {
       <Page>
         <MapView
           style={styles.map}
-          provider={PROVIDER_GOOGLE}
           initialRegion={
             this.state.latitude &&
             this.state.longitude && {
@@ -77,7 +78,7 @@ export default class Home extends Component {
               <Marker
                 coordinate={marker.coordinate}
                 title={marker.title}
-                onSelect={() => this.setState({ selectedMarkerTitle: marker.title })}
+                onPress={() => this.setState({ selectedMarkerTitle: marker.title })}
                 key={marker.title}
               />
             ))}
